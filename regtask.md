@@ -1,0 +1,2 @@
+- Start: Start-ScheduledTask -TaskName "BOOX Clipboard Watcher"
+- Check: Get-ScheduledTask -TaskName "BOOX Clipboard Watcher" | Get-ScheduledTaskInfo
