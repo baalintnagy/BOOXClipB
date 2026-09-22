@@ -1,8 +1,8 @@
-$ScriptPath = "C:\develop\gitrepos\BOOXClipB\Watch-BooxClipboard.ps1"
+$LauncherPath = Join-Path $PSScriptRoot "Start-BooxClipboard.vbs"
 
 $Action = New-ScheduledTaskAction `
-  -Execute "powershell.exe" `
-  -Argument "-NoProfile -WindowStyle Hidden -STA -ExecutionPolicy Bypass -File `"$ScriptPath`""
+  -Execute "$env:SystemRoot\System32\wscript.exe" `
+  -Argument "`"$LauncherPath`""
 
 $Trigger = New-ScheduledTaskTrigger -AtLogOn
 
@@ -17,4 +17,5 @@ Register-ScheduledTask `
   -Action $Action `
   -Trigger $Trigger `
   -Settings $Settings `
-  -Description "Copies new BOOX screenshots from C:\SyncBOOX to clipboard"
+  -Description "Copies new BOOX screenshots from C:\SyncBOOX to clipboard" `
+  -Force
